@@ -1,0 +1,54 @@
+
+const express=require("express")
+
+const app=express();
+
+app.use(express.json());
+
+app.get("/sum",(req,res)=>{
+    // const sum = parseInt(req.query.a)+ parseInt(req.query.b);
+    const sum = parseInt(req.body.a)+ parseInt(req.body.b);
+    res.send(sum.toLocaleString());
+    // console.log(req.query);
+    // res.send("hello shiv") 
+})
+
+app.get("/subtract",(req,res)=>{
+    const subtract=parseInt(req.query.c) - parseInt(req.query.d);
+    res.send(subtract.toLocaleString());
+})
+
+app.get("/mul",(req,res)=>{
+    const mul=parseInt(req.query.a)* parseInt(req.query.b);
+    res.send(mul.toLocaleString());
+})
+
+app.get("/div",(req,res)=>{
+    const div=parseInt(req.query.a) / parseInt(req.query.b);
+    res.send(div.toLocaleString());
+})
+
+app.get("/square",(req,res)=>{
+    const square=parseInt(req.query.a) * parseInt(req.query.a);
+    res.send(square.toLocaleString());
+})
+
+ app.get("/cube",(req,res)=>{
+    const cube=parseInt(req.query.a)*parseInt(req.query.a)* parseInt(req.query.a);
+    res.send(cube.toLocaleString());
+ })
+
+ app.get("/squareroot",(req,res)=>{
+    const squareroot=Math.sqrt(parseInt(req.query.a));
+    res.send(squareroot.toLocaleString());
+ })
+ app.get("/cuberoot",(req,res)=>{
+    const cuberoot=Math.cbrt(parseInt(req.query.a));
+    res.send(cuberoot.toLocaleString());
+ })
+
+
+
+app.listen(3000,()=>{
+    console.log("server running at 3000 port");
+})
