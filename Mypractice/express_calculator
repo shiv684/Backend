@@ -1,9 +1,28 @@
 
 const express=require("express")
+const fs=require("fs");
 
 const app=express();
 
 app.use(express.json());
+
+// ye middleware bna rhe h hm
+app.use((req,res,next)=>{
+    const timestamp=new Date().toISOString();
+    const log=
+    `request received at ${req.url}  method- ${req.method}  at timestamp ${timestamp}`;
+
+    fs.appendFile("./logs.txt",log,(err)=>{
+        if(err){
+            res.send("cannot write")
+        }
+    })
+    console.log("Middleware hit");
+
+    next();
+
+
+})
 
 app.get("/sum",(req,res)=>{
     // const sum = parseInt(req.query.a)+ parseInt(req.query.b);
